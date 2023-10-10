@@ -20,9 +20,17 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Build and push
+    - name: Build and push ECLIPSE 2023.06
       uses: docker/build-push-action@v5
       with:
         context: .
         push: true
         tags: basty149/eclipse:2023.06
+        file: Dockerfile
+    - name: Build and push ECLIPSE 2023.06 JDK8
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: basty149/eclipse-jdk8:2023.06
+          file: Dockerfile-jdk8
