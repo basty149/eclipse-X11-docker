@@ -32,5 +32,5 @@ jobs:
       with:
           context: .
           push: true
-          tags: basty149/eclipse-jdk8:2023.06
+          tags: basty149/eclipse:2023.06-jdk8
           file: Dockerfile-jdk8
