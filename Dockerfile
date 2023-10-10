@@ -4,7 +4,7 @@ FROM debian:11-slim AS build
 
 RUN apt-get update && \
     apt-get install -y wget && \
-    wget https://ftp.fau.de/eclipse/technology/epp/downloads/release/2023-06/R/eclipse-java-2023-06-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz && \
+    wget -nv https://ftp.fau.de/eclipse/technology/epp/downloads/release/2023-06/R/eclipse-java-2023-06-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz && \
     tar -xzf /tmp/eclipse.tar.gz -C /opt --no-same-owner && \
     rm /tmp/eclipse.tar.gz && \
     useradd -u 1000 -ms /bin/bash eclipse && \
@@ -23,7 +23,7 @@ RUN useradd -u 1000 -ms /bin/bash eclipse && \
     apt-get install -y libswt-gtk-4-jni dbus-x11 libsecret-1-0 wget && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    wget -O /opt/eclipse/lombok.jar https://projectlombok.org/downloads/lombok.jar && \
+    wget -nv -O /opt/eclipse/lombok.jar https://projectlombok.org/downloads/lombok.jar && \
     chown -R eclipse:eclipse /opt/eclipse && \
     chmod +x /opt/eclipse/entrypoint.sh && \
     cat /opt/eclipse/eclipse.ini | sed "/^-vmargs/a -javaagent:lombok.jar" > /opt/eclipse/eclipse.ini.new && \
